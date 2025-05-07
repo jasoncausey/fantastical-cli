@@ -1,6 +1,6 @@
 # Fantastical CLI
 
-A command-line interface (CLI) tool to quickly add events to your Fantastical calendar using natural language.
+An (unofficial) command-line interface (CLI) tool to quickly add events to your [Fantastical](https://flexibits.com/fantastical) calendar using natural language.
 
 ## Purpose
 
@@ -81,7 +81,8 @@ chmod +x fantastical-cli.py
 
 The script constructs a Fantastical URL scheme (`x-fantastical3://parse?...`) with the provided event details and uses the `open` command on macOS to send it to the Fantastical application.
 
-## MIT License <https://opensource.org/license/mit>
+## MIT License 
+<https://opensource.org/license/mit>
 
 Copyright 2025 Jason L. Causey
 

@@ -39,7 +39,7 @@ def add_event_url_scheme(
 ) -> None:
     """
     Add an event to Fantastical using the URL scheme approach.
-    
+
     Args:
         sentence: Natural language description of the event
         notes: Optional notes to add to the event
@@ -51,21 +51,21 @@ def add_event_url_scheme(
 
     # Build the URL parameters
     params: Dict[str, Any] = {"s": sentence}
-    
+
     if notes:
         params["n"] = notes
-    
+
     if calendar:
         params["calendarName"] = calendar
-    
+
     if add_immediately:
         params["add"] = "1"
-    
+
     # Encode parameters and build the URL
     # Use quote_via=urllib.parse.quote to encode spaces as %20 instead of +
     encoded_params = urllib.parse.urlencode(params, quote_via=urllib.parse.quote)
     url = f"{FANTASTICAL_BASE_URL}{encoded_params}"
-    
+
     # Open the URL with the default handler (which should be Fantastical)
     subprocess.run(["open", url])
     print(f"Event sent to Fantastical: {sentence}")
@@ -76,40 +76,43 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="Add events to Fantastical using natural language input."
     )
-    
+
     parser.add_argument(
         "sentence",
         nargs="*",
         help="Natural language description of the event (e.g., 'Meeting with John tomorrow at 3pm')",
     )
-    
+
     parser.add_argument(
-        "-n", "--notes",
+        "-n",
+        "--notes",
         help="Additional notes for the event",
     )
-    
+
     parser.add_argument(
-        "-c", "--calendar",
+        "-c",
+        "--calendar",
         help="Calendar to add the event to",
     )
-    
+
     parser.add_argument(
-        "-g", "--gui",  # New flag for showing GUI
+        "-g",
+        "--gui",  # New flag for showing GUI
         action="store_true",
         help="Show the Fantastical UI to confirm before adding (default is immediate add)",
     )
-    
+
     # Parse arguments
     args = parser.parse_args()
-    
+
     # Check if sentence was provided
     if not args.sentence:
         parser.print_help()
         sys.exit(1)
-    
+
     # Join the sentence parts
     sentence = " ".join(args.sentence)
-    
+
     # Add the event using the selected method
     # Determine if the event should be added immediately
     # If --gui is specified, add_immediately is False. Otherwise, it's True.

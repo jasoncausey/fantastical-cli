@@ -31,7 +31,7 @@ import sys
 from typing import Optional, Dict, Any
 
 
-def add_event_url_scheme(
+def add_event(
     sentence: str,
     notes: Optional[str] = None,
     calendar: Optional[str] = None,
@@ -113,12 +113,12 @@ def main() -> None:
     # Join the sentence parts
     sentence = " ".join(args.sentence)
 
-    # Add the event using the selected method
+    # Add the event
     # Determine if the event should be added immediately
     # If --gui is specified, add_immediately is False. Otherwise, it's True.
     should_add_immediately = not args.gui
 
-    add_event_url_scheme(sentence, args.notes, args.calendar, should_add_immediately)
+    add_event(sentence, args.notes, args.calendar, should_add_immediately)
 
 
 if __name__ == "__main__":

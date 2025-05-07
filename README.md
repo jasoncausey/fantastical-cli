@@ -13,7 +13,7 @@ This script allows you to add events to Fantastical directly from your terminal.
 
 ## Installation
 
-### With `uv tool` (Recommended):
+### With [`uv tool`](https://docs.astral.sh/uv/guides/tools/#installing-tools) (Recommended):
 
 ```bash
 uv tool install https://github.com/jasoncausey/fantastical-cli.git

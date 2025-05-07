@@ -11,6 +11,34 @@ This script allows you to add events to Fantastical directly from your terminal.
 - Python 3
 - Fantastical 3 (or a version that supports the `x-fantastical3://` URL scheme) installed on macOS.
 
+## Installation
+
+### With `uv tool` (Recommended):
+
+```bash
+uv tool install https://github.com/jasoncausey/fantastical-cli.git
+```
+
+### Manually
+
+Clone this repository somewhere:
+```bash
+git clone https://github.com/jasoncausey/fantastical-cli.git
+```
+
+Make sure the file `fantastical_cli.py` is executable:
+
+```bash
+cd fantastical-cli
+chmod +x fantastical_cli.py
+```
+
+Then create a symlink to the `fantastical_cli.py` script from somewhere in your system path.  For example:
+
+```bash
+ln -s /path/to/fantastical-cli/fantastical_cli.py  ~/.local/sbin/fantastical-cli
+```
+
 ## Usage
 
 To use the script, you can run it directly if it's executable, or by invoking it with `python3`.
@@ -25,6 +53,8 @@ Make sure the script is executable:
 ```bash
 chmod +x fantastical-cli.py
 ```
+
+Now you can run with `fantastical-cli` as the command name.
 
 ### Arguments
 
@@ -49,30 +79,32 @@ chmod +x fantastical-cli.py
 
 ## Examples
 
+Note:  All examples assume the script is installed with one of the two methods listed in the [Installation](#installation) section.  If not, replace `fantastical-cli` with the path to the `fantastical_cli.py` script.
+
 1.  **Add an event immediately:**
     ```bash
-    ./fantastical-cli.py "Team meeting next Monday at 10am"
+    fantastical-cli "Team meeting next Monday at 10am"
     ```
 
 2.  **Add an event with notes:**
     ```bash
-    ./fantastical-cli.py "Doctor appointment on Friday 3pm" -n "Annual check-up"
+    fantastical-cli "Doctor appointment on Friday 3pm" -n "Annual check-up"
     ```
 
 3.  **Add an event to a specific calendar and review in GUI:**
     ```bash
-    ./fantastical-cli.py "Dinner with family this Saturday 7pm" -c "Personal" -g
+    fantastical-cli "Dinner with family this Saturday 7pm" -c "Personal" -g
     ```
 
 4.  **Add an event with a multi-word sentence without quotes (less common):**
     ```bash
-    ./fantastical-cli.py Coffee with Alex at 9am next Tuesday
+    fantastical-cli Coffee with Alex at 9am next Tuesday
     ```
     (Note: It's generally safer to quote sentences with spaces.)
 
 5. **Add a TODO item with "High" priority:**
     ```bash
-    ./fantastical-cli.py 'TODO: Check for project feedback today by 5pm!!!'
+    fantastical-cli 'TODO: Check for project feedback today by 5pm!!!'
     ```
     (Note: Fantastical TODOs just require prefixing the sentence with "TODO" or "todo", and the
     priority is set by adding exclamation marks '!'=low, '!!'=medium, '!!!'=high.)

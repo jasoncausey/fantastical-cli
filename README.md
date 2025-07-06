@@ -13,7 +13,14 @@ This script allows you to add events to Fantastical directly from your terminal.
 
 ## Installation
 
-### With [`uv tool`](https://docs.astral.sh/uv/guides/tools/#installing-tools) (Recommended):
+### 🍺 With [Homebrew](https://brew.sh/) (Recommended)
+
+```bash
+brew tap jasoncausey/fantastical-cli
+brew install fantastical-cli
+```
+
+### With [`uv tool`](https://docs.astral.sh/uv/guides/tools/#installing-tools)
 
 ```bash
 uv tool install https://github.com/jasoncausey/fantastical-cli.git
@@ -22,6 +29,7 @@ uv tool install https://github.com/jasoncausey/fantastical-cli.git
 ### Manually
 
 Clone this repository somewhere:
+
 ```bash
 git clone https://github.com/jasoncausey/fantastical-cli.git
 ```
@@ -50,6 +58,7 @@ python3 fantastical-cli.py [options] "event sentence"
 ```
 
 Make sure the script is executable:
+
 ```bash
 chmod +x fantastical-cli.py
 ```
@@ -58,54 +67,61 @@ Now you can run with `fantastical-cli` as the command name.
 
 ### Arguments
 
--   **`sentence`** (required):
-    -   The natural language description of the event.
-    -   Example: `"Lunch with Sarah tomorrow at 1pm at The Cafe"`
-    -   If your sentence contains spaces, it's best to enclose it in quotes, or provide it as the last set of arguments.
+- **`sentence`** (required):
+  - The natural language description of the event.
+  - Example: `"Lunch with Sarah tomorrow at 1pm at The Cafe"`
+  - If your sentence contains spaces, it's best to enclose it in quotes, or provide it as the last set of arguments.
 
 ### Options
 
--   **`-n, --notes "YOUR NOTES"`**:
-    -   Adds additional notes to the event.
-    -   Example: `--notes "Discuss project updates"`
+- **`-n, --notes "YOUR NOTES"`**:
+  - Adds additional notes to the event.
+  - Example: `--notes "Discuss project updates"`
 
--   **`-c, --calendar "CALENDAR NAME"`**:
-    -   Specifies the calendar to add the event to.
-    -   Example: `--calendar "Work"`
+- **`-c, --calendar "CALENDAR NAME"`**:
+  - Specifies the calendar to add the event to.
+  - Example: `--calendar "Work"`
 
--   **`-g, --gui`**:
-    -   If this flag is present, Fantastical will open its UI to let you review and confirm the event details before adding it.
-    -   By default (if `-g` is *not* used), the event is added immediately to Fantastical without showing the confirmation UI.
+- **`-g, --gui`**:
+  - If this flag is present, Fantastical will open its UI to let you review and confirm the event details before adding it.
+  - By default (if `-g` is *not* used), the event is added immediately to Fantastical without showing the confirmation UI.
 
 ## Examples
 
 Note:  All examples assume the script is installed with one of the two methods listed in the [Installation](#installation) section.  If not, replace `fantastical-cli` with the path to the `fantastical_cli.py` script.
 
-1.  **Add an event immediately:**
+1. **Add an event immediately:**
+
     ```bash
     fantastical-cli "Team meeting next Monday at 10am"
     ```
 
-2.  **Add an event with notes:**
+2. **Add an event with notes:**
+
     ```bash
-    fantastical-cli "Doctor appointment on Friday 3pm" -n "Annual check-up"
+    fantastical-cli "Doctor appointment on Friday 3pm" --notes "Remember to bring insurance card."
     ```
 
-3.  **Add an event to a specific calendar and review in GUI:**
+3. **Add an event to a specific calendar and review in GUI:**
+
     ```bash
     fantastical-cli "Dinner with family this Saturday 7pm" -c "Personal" -g
     ```
 
-4.  **Add an event with a multi-word sentence without quotes (less common):**
+4. **Add an event with a multi-word sentence without quotes (less common):**
+
     ```bash
     fantastical-cli Coffee with Alex at 9am next Tuesday
     ```
+
     (Note: It's generally safer to quote sentences with spaces.)
 
 5. **Add a TODO item with "High" priority:**
+
     ```bash
     fantastical-cli 'TODO: Check for project feedback today by 5pm!!!'
     ```
+
     (Note: Fantastical TODOs just require prefixing the sentence with "TODO" or "todo", and the
     priority is set by adding exclamation marks '!'=low, '!!'=medium, '!!!'=high.)
 
@@ -113,7 +129,8 @@ Note:  All examples assume the script is installed with one of the two methods l
 
 The script constructs a Fantastical URL scheme (`x-fantastical3://parse?...`) with the provided event details and uses the `open` command on macOS to send it to the Fantastical application.
 
-## MIT License 
+## MIT License
+
 <https://opensource.org/license/mit>
 
 Copyright 2025 Jason L. Causey

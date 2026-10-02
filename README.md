@@ -82,12 +82,6 @@ Now you can run with `fantastical-cli` as the command name.
   - Specifies the calendar to add the event to.
   - Example: `--calendar "Work"`
 
-- **`-a, --availability AVAILABILITY`**:
-  - Sets how the event shows your availability: `free`, `busy`, `tentative`, `outofoffice`, or `workingelsewhere`.
-  - Case, spaces, hyphens, and underscores are ignored, so `out-of-office`, `Out_Of_Office`, and `outofoffice` are equivalent.
-  - Example: `-a out-of-office` or `-a "Out of Office"`
-  - Note: `outofoffice` and `workingelsewhere` only take effect on calendar accounts that support them (e.g. Exchange, Google).
-
 - **`-g, --gui`**:
   - If this flag is present, Fantastical will open its UI to let you review and confirm the event details before adding it.
   - By default (if `-g` is *not* used), the event is added immediately to Fantastical without showing the confirmation UI.
@@ -114,13 +108,7 @@ Note:  All examples assume the script is installed with one of the two methods l
     fantastical-cli "Dinner with family this Saturday 7pm" -c "Personal" -g
     ```
 
-4. **Add an event that shows you as out of office:**
-
-    ```bash
-    fantastical-cli "Vacation Dec 22 - Jan 2" -a out-of-office
-    ```
-
-5. **Add an event with a multi-word sentence without quotes (less common):**
+4. **Add an event with a multi-word sentence without quotes (less common):**
 
     ```bash
     fantastical-cli Coffee with Alex at 9am next Tuesday
@@ -128,7 +116,7 @@ Note:  All examples assume the script is installed with one of the two methods l
 
     (Note: It's generally safer to quote sentences with spaces.)
 
-6. **Add a TODO item with "High" priority:**
+5. **Add a TODO item with "High" priority:**
 
     ```bash
     fantastical-cli 'TODO: Check for project feedback today by 5pm!!!'

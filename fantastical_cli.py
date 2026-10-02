@@ -30,12 +30,21 @@ import urllib.parse
 import sys
 from typing import Optional, Dict, Any
 
+# Availability ("show as") values accepted by Fantastical's URL scheme
+AVAILABILITY_CHOICES = ["free", "busy", "tentative", "outofoffice", "workingelsewhere"]
+
+
+def normalize_availability(value: str) -> str:
+    """Lowercase and drop spaces, hyphens, and underscores (e.g. 'Out-of-Office' -> 'outofoffice')."""
+    return "".join(ch for ch in value.lower() if ch not in " -_")
+
 
 def add_event(
     sentence: str,
     notes: Optional[str] = None,
     calendar: Optional[str] = None,
     add_immediately: bool = False,
+    availability: Optional[str] = None,
 ) -> None:
     """
     Add an event to Fantastical using the URL scheme approach.
@@ -45,6 +54,7 @@ def add_event(
         notes: Optional notes to add to the event
         calendar: Optional calendar name to add the event to
         add_immediately: Whether to add the event immediately without showing UI
+        availability: Optional availability (one of AVAILABILITY_CHOICES)
     """
     # Fantastical 3 URL scheme base
     FANTASTICAL_BASE_URL = "x-fantastical3://parse?"
@@ -57,6 +67,9 @@ def add_event(
 
     if calendar:
         params["calendarName"] = calendar
+
+    if availability:
+        params["availability"] = availability
 
     if add_immediately:
         params["add"] = "1"
@@ -96,6 +109,15 @@ def main() -> None:
     )
 
     parser.add_argument(
+        "-a",
+        "--availability",
+        type=normalize_availability,
+        choices=AVAILABILITY_CHOICES,
+        help="Show the event as free, busy, tentative, outofoffice, or workingelsewhere "
+        "(case, spaces, hyphens, and underscores are ignored)",
+    )
+
+    parser.add_argument(
         "-g",
         "--gui",  # New flag for showing GUI
         action="store_true",
@@ -118,7 +140,7 @@ def main() -> None:
     # If --gui is specified, add_immediately is False. Otherwise, it's True.
     should_add_immediately = not args.gui
 
-    add_event(sentence, args.notes, args.calendar, should_add_immediately)
+    add_event(sentence, args.notes, args.calendar, should_add_immediately, args.availability)
 
 
 if __name__ == "__main__":
